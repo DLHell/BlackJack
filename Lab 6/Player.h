@@ -17,6 +17,7 @@ public:
 	Bankroll GetBankroll() const;	//Get player's money
 	//void Check21();	//Check if blackjack
 	int GetHandValue() const;	//Get Hand's value
+	Hand GetPlayerHand() const;	//Get player's Hand?
 
 private:
 	Bankroll mBankroll;	//Player's money

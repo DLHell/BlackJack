@@ -11,7 +11,7 @@ public:
 	~Hand();
 	int GetHandValue() const;
 	
-private:	//This is just for visual appearance for organization
+//private:	//This is just for visual appearance for organization
 	void CountHandValue();
 
 private:	//data members

@@ -25,10 +25,15 @@ Bankroll Player::GetBankroll() const
 	return mBankroll;
 }
 
+Hand Player::GetPlayerHand() const
+{
+	return mPlayerHand;
+}
+
 void Player::AddCardToPHand(Card mCard)
 {
-	
-	
+	//mPlayerHand.CountHandValue();
+	GetHandValue();
 	//Card mCard;
 	//below function call does not work, make a getter for mDeck?
 	//mDeck.Deal().Display();
@@ -39,46 +44,43 @@ void Player::AddCardToPHand(Card mCard)
 
 int Player::GetHandValue() const
 {
-	
-
 	return mPlayerHand.GetHandValue();
 }
 
 void Player::HitStay()	//Make a bool and make this function return a bool?
 {
-	/*
-	This would have the same problem as GoAgain currently
-	char hitchoice = NULL;
-	bool hitornay(false);
+	//char hitchoice = NULL;
+	//bool hitornay(false);
 
-	while (hitornay == false)
-	{
-	cout << "Would you like to hit or stay? (y/n)" << endl;
-	cin >> hitchoice;
+	//while (hitornay == false)
+	//{
+	//	cout << "Would you like to hit or stay? (y/n)" << endl;
+	//	cin >> hitchoice;
 
-	hitchoice = toupper(hitchoice);
+	//	hitchoice = toupper(hitchoice);
 
-	switch (hitchoice)
-	{
-	case 'Y':
-	{
-	AddCardtoPHand();
+	//	cout << endl;
 
-	break;
-	}
+	//	switch (hitchoice)
+	//	{
+	//	case 'Y':
+	//	{
+	//		AddCardToPHand(*mDeck.Deal());	//How to access deck now?
 
-	case 'N':
-	{
-	//Player has chosen to stay
+	//		break;
+	//	}
 
-	quit = true;
+	//	case 'N':
+	//	{
+	//		//Nothing here since player chose to stay
 
-	break;
-	}
+	//		hitornay = true;
 
-	default:
-	cout << "Sorry, that was not a valid menu option, please try again.\n" << endl;
-	}
-	
-	*/
+	//		break;
+	//	}
+
+	//	default:
+	//		cout << "Sorry, that was not a valid menu option, please try again.\n" << endl;
+	//	}
+	//}
 }

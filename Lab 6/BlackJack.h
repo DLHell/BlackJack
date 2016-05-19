@@ -11,7 +11,7 @@ public:
 	Blackjack();	//Ctor
 	~Blackjack();	//Dtor
 	void Play21();	//Main Driver
-	bool GoAgain(bool &);	//Ask for another round
+	//bool GoAgain(bool &);	//Ask for another round
 	void Prompt();	//Display of GoAgain
 	void MainMenu();	//Called at the very beginning of the program
 	void Check21();	//Check if blackjack

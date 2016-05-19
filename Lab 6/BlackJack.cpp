@@ -58,6 +58,8 @@ void Blackjack::MainMenu()
 void Blackjack::Play21()
 {
 	bool exit(false);
+	//int PlayerHandValue = 0;
+	//int DealerHandValue(0);
 
 	mPlaya.Bet();
 
@@ -72,16 +74,25 @@ void Blackjack::Play21()
 
 	cout << "\nYou have been dealt: " << endl;
 	mPlaya.AddCardToPHand(*mDeck.Deal());	//Display card
+	mPlaya.GetPlayerHand().CountHandValue();
 	mPlaya.AddCardToPHand(*mDeck.Deal());	//Display card
 
 	cout << "\nThe Dealer is showing: " << endl;
 	mDeala.AddCardToDHand(*mDeck.Deal());
 	//mDeala.AddCardToDHand(mDeck.Deal()); later
 		
-	//cout << "You currently have: " << PlayerHandValue;
+	//player's hand's counthandvalue function below
+	//how to properly call?
+	//mPlaya.GetHandValue().CountHandValue();
+
+	cout << "\nYou currently have: " << mPlaya.GetHandValue() << endl;
 
 	//How do I get the Ace to be 1 or 11?
 	//How do I get the program to realize the values of the cards?
+
+	Check21();
+
+	mPlaya.HitStay();
 
 	/*
 	PlayerHandValue = card1value + card2value;
@@ -124,68 +135,68 @@ void Blackjack::Play21()
 	}
 	*/
 
-
-	/*if (money == 0 || money >= 50000)
+	//Do you have to use GetBankRoll() below?
+	/*if (mPlaya.mBankroll == 0 || mPlaya.mBankroll >= 50000)
 	{
 	cout << "Thanks for playing but come back another day." << endl;
 	exit = true;
 	}*/
-
-	//else
-
-	//GoAgain(exit);	//FIRST PRIORITY
-
 }
 
-bool Blackjack::GoAgain(bool & exit)
-{
-	//char choice = '\0';
-	int choice = 0;
-
-	Prompt();
-
-	cout << "Please enter your menu choice: ";
-	cin >> choice;
-
-	//choice = toupper(choice);
-
-	cout << endl;
-
-	switch (choice)
-	{
-		case 1:
-		{
-			exit = false;
-
-			break;
-		}
-
-		case 2:
-		{
-			exit = true;
-
-			break;
-		}
-
-		default:
-			cout << "Sorry, that was not a valid menu option, please try again.\n" << endl;
-	}
-
-	return exit;
-}
+//bool Blackjack::GoAgain(bool & exit)
+//{
+//	//char choice = '\0';
+//	int choice = 0;
+//
+//	Prompt();
+//
+//	cout << "Please enter your menu choice: ";
+//	cin >> choice;
+//
+//	//choice = toupper(choice);
+//
+//	cout << endl;
+//
+//	switch (choice)
+//	{
+//		case 1:
+//		{
+//			exit = false;
+//
+//			break;
+//		}
+//
+//		case 2:
+//		{
+//			exit = true;
+//
+//			break;
+//		}
+//
+//		default:
+//			cout << "Sorry, that was not a valid menu option, please try again.\n" << endl;
+//	}
+//
+//	return exit;
+//}
 
 void Blackjack::Prompt()
 {
 	cout << "\nWould you like to play another hand: " << endl;
-	//cout << "\nY) Yes." << endl;
-	//cout << "N) No.\n" << endl;
 	cout << "\n1) Yes." << endl;
 	cout << "2) No.\n" << endl;
 }
 
-void Blackjack::Check21(/*card value to be passed in here, assume int*/)
+void Blackjack::Check21(/*HandValue? card value to be passed in here, assume int*/)
 {
 	/*
+	if (HandValue = 21)
+	{
+	cout << "You hit BlackJack! WINNER WINNER CHICKEN DINNER!" << endl;
+	}
+	else
+		//Nothing should be here.
+
 	Check here if card value = 21 or not.
 	if so ...oh return blackjack?
 	Be able to check both player and dealer's hands.

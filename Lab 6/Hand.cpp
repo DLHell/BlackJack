@@ -1,6 +1,6 @@
 #include "Hand.h"
 
-Hand::Hand()
+Hand::Hand() : mHandValue(0), mNumOfCardsInHand(0)
 {
 
 }
@@ -12,7 +12,8 @@ Hand::~Hand()
 
 int Hand::GetHandValue() const
 {
-//	CountHandValue();
+	//mHandValue = CountHandValue();
+	//CountHandValue();
 
 	return mHandValue;
 }
@@ -20,8 +21,8 @@ int Hand::GetHandValue() const
 void Hand::CountHandValue()
 {
 	bool IfAceFound(false);
-	//int tempHandValue = 0;
 	int CardValue = 0;
+	mNumOfCardsInHand++;
 
 	for (int i = 0; i < mNumOfCardsInHand; i++)
 	{
@@ -32,16 +33,27 @@ void Hand::CountHandValue()
 			CardValue = 10;
 		}
 
-		if (CardValue == 1)
+		else if (2 <= CardValue < 10)
+		{
+			CardValue = CardValue;
+		}
+
+		else if (CardValue == 1)
 		{
 			IfAceFound = true;
 		}
 
+		mHandValue += CardValue;
 		//BestHandPossible
-		if (IfAceFound == true)
+		/*if (IfAceFound == true)
 		{
-			if (CardValue  )
-		}
+			if (CardValue + 10 <= 21 )
+			{
+				CardValue += 10;
+			}
+			else
+				//Is there anything even needed here?
+		}*/
 
 
 
@@ -63,5 +75,7 @@ void Hand::CountHandValue()
 			IfAceFound = true;
 		}*/
 		//tempHandValue += 1;
+	
 	}
+
 }
