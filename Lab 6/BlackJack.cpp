@@ -58,20 +58,15 @@ void Blackjack::MainMenu()
 void Blackjack::Play21()
 {
 	bool exit(false);
-	//int PlayerHandValue = 0;
+	bool Playerbusts(false);
+	//int PlayerHandValue(0);
 	//int DealerHandValue(0);
 
 	mPlaya.Bet();
 
 	//Every day I'm shufflin
 	mDeck.Shuffle();
-
-	/*for (int i = 0; i < 53; i++)
-	{
-		mDeck.Deal()->Display();
-		cout << i << endl;
-	}*/
-
+	
 	cout << "\nYou have been dealt: " << endl;
 	mPlaya.InitPlayerHand(*mDeck.Deal(), *mDeck.Deal());
 	
@@ -82,39 +77,35 @@ void Blackjack::Play21()
 	mDeala.AddCardToDHand(*mDeck.Deal());
 	//mDeala.AddCardToDHand(*mDeck.Deal()); later
 
-
 	cout << "\nYou currently have: " << mPlaya.GetPlayerHandValue() << endl;
 
-
-	mPlaya.HitStay(*mDeck.Deal());
+	Check21(mPlaya.GetPlayerHandValue());
+	Playerbusts = mPlaya.HitStay(mDeck, Playerbusts);
 	//cout << "current hand value: " << mPlaya.GetPlayerHandValue() << endl;
 
-	Check21();
+	if (!Playerbusts)
+	{
+		cout << "\nThe dealer is now showing: " << endl;
+		mDeala.AddCardToDHand(*mDeck.Deal()); //now
 
-	//mPlaya.HitStay();	//Maybe this should be a blackjack function
+		Check21(mDeala.GetDealerHandValue());
 
-	/*
-	PlayerHandValue = card1value + card2value;
-	cout << "You currently have: " << PlayerHandValue;
+	}
 
-	Check21();
+	//*Flip* Dealer's hidden card.
+	////mDeala.AddCardToDHand(*mDeck.Deal()); later
+	//DealerHandValue = dcard1value + dcard2value;
+	//Check here to see if Dealer is below 17. If so, hit until 17.
+	//DealerHitStay();
+	//Check21();
 
-	HitStay();
-
-	BustOrNah();	//Is this a Blackjack function?
-	//Check if PlayerHandValue > 21;
-
-	*Flip* Dealer's hidden card.
-	//mDeala.AddCardToDHand(*mDeck.Deal()); later
-	DealerHandValue = dcard1value + dcard2value;
-	Check here to see if Dealer is below 17. If so, hit until 17.
-	DealerHitStay();
-	Check21();
-
-	BustOrNah();	//Is this a Blackjack function?
+	//BustOrNah();	//Is this a Blackjack function?
 	//Check if DealerHandValue > 21;
 
 	//Can you make BustOrNah and Check21 the same function?
+
+	/*PlayerHandValue = mPlaya.GetPlayerHandValue();
+	DealerHandValue = mDeala.GetDealerHandValue();
 
 	if (DealerHandValue < PlayerHandValue)
 	{
@@ -136,6 +127,7 @@ void Blackjack::Play21()
 	}
 	*/
 
+	/*
 	//Do you have to use GetBankRoll() below?
 	/*if (mPlaya.mBankroll == 0 || mPlaya.mBankroll >= 50000)
 	{
@@ -188,18 +180,18 @@ void Blackjack::Prompt()
 	cout << "2) No.\n" << endl;
 }
 
-void Blackjack::Check21(/*HandValue? card value to be passed in here, assume int*/)
+void Blackjack::Check21(int handvalue)
 {
-	/*if (mHandValue = 21)
+	if (handvalue == 21)
 	{
-	cout << "You hit BlackJack! WINNER WINNER CHICKEN DINNER!" << endl;
+		cout << "You hit BlackJack! Stay your hand." << endl;
 	}
-	else*/
-		//Nothing should be here.
+}
 
-	/*
-	Check here if card value = 21 or not.
-	if so ...oh return blackjack?
-	Be able to check both player and dealer's hands.
-	*/
+void Blackjack::BustOrNah(int bustmate)
+{
+	if (bustmate > 21)
+	{
+		cout << "Sorry mate, you just busted." << endl;
+	}
 }

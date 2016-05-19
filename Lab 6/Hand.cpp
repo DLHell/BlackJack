@@ -53,6 +53,7 @@ void Hand::CountHandValue()
 {
 	bool IfAceFound(false);
 	int CardValue = 0;
+	bool Added10Already(false);
 
 	SetHandValue(0);
 
@@ -83,6 +84,13 @@ void Hand::CountHandValue()
 			if (mHandValue + 10 <= 21)
 			{
 				mHandValue += 10;
+
+				Added10Already = true;
+			}
+
+			else if (mHandValue > 21 && Added10Already == true)
+			{
+				mHandValue -= 10;
 			}
 
 			//Is there anything even needed here?

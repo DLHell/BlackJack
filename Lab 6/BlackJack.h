@@ -14,7 +14,8 @@ public:
 	//bool GoAgain(bool &);	//Ask for another round
 	void Prompt();	//Display of GoAgain
 	void MainMenu();	//Called at the very beginning of the program
-	void Check21();	//Check if blackjack
+	void Check21(int);	//Check if blackjack
+	void BustOrNah(int);	//Check if bust or nah
 
 private:
 	Player mPlaya;

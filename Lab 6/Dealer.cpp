@@ -12,5 +12,12 @@ Dealer::~Dealer()
 
 void Dealer::AddCardToDHand(Card mdCard)
 {
-	mdCard.Display();
+	mDealerHand.AddCardToHand(mdCard);
+
+	//mdCard.Display();
+}
+
+int Dealer::GetDealerHandValue() const
+{
+	return mDealerHandValue;
 }

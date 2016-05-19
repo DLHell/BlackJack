@@ -48,20 +48,19 @@ Hand Player::GetPlayerHand() const
 //	//knows the value of my hand?
 //}
 
-int Player::GetPlayerHandValue() //const
+int Player::GetPlayerHandValue() const
 {
-	//mPlayerHand.CountHandValue();
-
 	return mPlayerHand.GetHandValue();
 }
 
 //maybe change to two functions
-void Player::HitStay(Card mCard)	//Make a bool and make this function return a bool?
+bool Player::HitStay(Deck & mDeck, bool mBusts)	//Make a bool and make this function return a bool?
 {
 	char hitchoice = NULL;
 	bool hitornay(false);
+	bool busts(false);
 
-	while (hitornay == false)
+	while (GetPlayerHandValue() < 21 && hitornay == false)
 	{
 		cout << "\nWould you like to hit or stay? (y/n)" << endl;
 		cin >> hitchoice;
@@ -74,10 +73,11 @@ void Player::HitStay(Card mCard)	//Make a bool and make this function return a b
 		{
 		case 'Y':
 		{
-			PlayerHit(mCard);	//How to access deck now?
+			PlayerHit(*mDeck.Deal());	//How to access deck now?
 
 			mPlayerHand.CountHandValue();
-
+			//BustOrNah(mPlaya.GetPlayerHandValue());
+			
 			break;
 		}
 
@@ -95,14 +95,23 @@ void Player::HitStay(Card mCard)	//Make a bool and make this function return a b
 			cout << "Sorry, that was not a valid menu option, please try again.\n" << endl;
 		}
 	}
+
+	if (GetPlayerHandValue() == 21)
+	{
+		cout << "You have 21, stay." << endl;
+	}
+
+	else if (GetPlayerHandValue() > 21)
+	{
+		cout << "You busted bruh." << endl;
+
+		busts = true;
+	}
+
+	return busts;
 }
 
 void Player::PlayerHit(Card mCard)
 {
 	mPlayerHand.AddCardToHand(mCard);
 }
-
-//void Player::PlayerStay()
-//{
-//
-//}
