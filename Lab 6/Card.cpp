@@ -1,7 +1,7 @@
 #include "Card.h"
 
 /****************************************************************************
-Purpose: Default Constructor.
+Purpose: Default - 2 arg Constructor.
 
 Entry: Nothing.
 
@@ -19,7 +19,8 @@ Exit: Invoked when an object is destoryed to free up allocated space.
 *****************************************************************************/
 Card::~Card()
 {
-	
+	mRank = ACE;
+	mSuit = HEARTS;
 }
 
 /****************************************************************************

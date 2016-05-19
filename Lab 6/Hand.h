@@ -10,12 +10,17 @@ public:
 	Hand();
 	~Hand();
 	int GetHandValue() const;
+	int GetNumOfCardsInHand() const;
+	//Card GetHand() const;?
+	void AddCardToHand(Card);
+	void SetHandValue(int);
 	
 //private:	//This is just for visual appearance for organization
 	void CountHandValue();
 
 private:	//data members
-	Card * mHand[11];
+	//Card * mHand[11];
+	Card * mHand;
 	int mHandValue;
 	int mNumOfCardsInHand;
 };

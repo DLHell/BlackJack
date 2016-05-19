@@ -73,26 +73,25 @@ void Blackjack::Play21()
 	}*/
 
 	cout << "\nYou have been dealt: " << endl;
-	mPlaya.AddCardToPHand(*mDeck.Deal());	//Display card
-	mPlaya.GetPlayerHand().CountHandValue();
-	mPlaya.AddCardToPHand(*mDeck.Deal());	//Display card
+	mPlaya.InitPlayerHand(*mDeck.Deal(), *mDeck.Deal());
+	
+	//mPlaya.AddCardToPHand(*mDeck.Deal());	//Display card
+	//mPlaya.AddCardToPHand(*mDeck.Deal());	//Display card
 
 	cout << "\nThe Dealer is showing: " << endl;
 	mDeala.AddCardToDHand(*mDeck.Deal());
-	//mDeala.AddCardToDHand(mDeck.Deal()); later
-		
-	//player's hand's counthandvalue function below
-	//how to properly call?
-	//mPlaya.GetHandValue().CountHandValue();
+	//mDeala.AddCardToDHand(*mDeck.Deal()); later
 
-	cout << "\nYou currently have: " << mPlaya.GetHandValue() << endl;
 
-	//How do I get the Ace to be 1 or 11?
-	//How do I get the program to realize the values of the cards?
+	cout << "\nYou currently have: " << mPlaya.GetPlayerHandValue() << endl;
+
+
+	mPlaya.HitStay(*mDeck.Deal());
+	//cout << "current hand value: " << mPlaya.GetPlayerHandValue() << endl;
 
 	Check21();
 
-	mPlaya.HitStay();
+	//mPlaya.HitStay();	//Maybe this should be a blackjack function
 
 	/*
 	PlayerHandValue = card1value + card2value;
@@ -106,8 +105,10 @@ void Blackjack::Play21()
 	//Check if PlayerHandValue > 21;
 
 	*Flip* Dealer's hidden card.
+	//mDeala.AddCardToDHand(*mDeck.Deal()); later
 	DealerHandValue = dcard1value + dcard2value;
 	Check here to see if Dealer is below 17. If so, hit until 17.
+	DealerHitStay();
 	Check21();
 
 	BustOrNah();	//Is this a Blackjack function?
@@ -129,7 +130,7 @@ void Blackjack::Play21()
 
 	else if (DealerHandValue > PlayerHandValue)
 	{
-	cout << "Sorry, the dealer has won" << endl;
+	cout << "Sorry, the dealer has won this round." << endl;
 	take money here.	//So do nothing?
 	end round. (Do you have to destory deck here?)
 	}
@@ -189,14 +190,14 @@ void Blackjack::Prompt()
 
 void Blackjack::Check21(/*HandValue? card value to be passed in here, assume int*/)
 {
-	/*
-	if (HandValue = 21)
+	/*if (mHandValue = 21)
 	{
 	cout << "You hit BlackJack! WINNER WINNER CHICKEN DINNER!" << endl;
 	}
-	else
+	else*/
 		//Nothing should be here.
 
+	/*
 	Check here if card value = 21 or not.
 	if so ...oh return blackjack?
 	Be able to check both player and dealer's hands.

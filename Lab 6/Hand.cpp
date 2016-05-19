@@ -2,7 +2,7 @@
 
 Hand::Hand() : mHandValue(0), mNumOfCardsInHand(0)
 {
-
+	
 }
 
 Hand::~Hand()
@@ -12,28 +12,61 @@ Hand::~Hand()
 
 int Hand::GetHandValue() const
 {
-	//mHandValue = CountHandValue();
-	//CountHandValue();
-
 	return mHandValue;
+}
+
+int Hand::GetNumOfCardsInHand() const
+{
+	return mNumOfCardsInHand;
+}
+
+void Hand::AddCardToHand(Card mCard)
+{
+	Card * tempCard = new Card[mNumOfCardsInHand + 1];
+
+	for (int i = 0; i < mNumOfCardsInHand; i++)
+	{
+		tempCard[i] = mHand[i];
+	}
+
+	tempCard[mNumOfCardsInHand] = mCard;
+
+	if (mNumOfCardsInHand != 0)
+	{
+		delete[] mHand;
+	}
+	//for (int x = 0; )
+
+	mHand = tempCard;
+
+	mCard.Display();
+
+	mNumOfCardsInHand++;
+}
+
+void Hand::SetHandValue(int num)
+{
+	mHandValue = num;
 }
 
 void Hand::CountHandValue()
 {
 	bool IfAceFound(false);
 	int CardValue = 0;
-	mNumOfCardsInHand++;
+
+	SetHandValue(0);
 
 	for (int i = 0; i < mNumOfCardsInHand; i++)
 	{
-		CardValue = static_cast<int>(mHand[i]->GetRank());
+		//put in the value of the rank into an int CardValue
+		CardValue = static_cast<int>(mHand[i].GetRank());
 		
 		if (CardValue >= 10)
 		{
 			CardValue = 10;
 		}
 
-		else if (2 <= CardValue < 10)
+		else if (CardValue >= 2 && CardValue < 10)
 		{
 			CardValue = CardValue;
 		}
@@ -43,39 +76,20 @@ void Hand::CountHandValue()
 			IfAceFound = true;
 		}
 
-		mHandValue += CardValue;
-		//BestHandPossible
-		/*if (IfAceFound == true)
+		if (IfAceFound == true)
 		{
-			if (CardValue + 10 <= 21 )
+			mHandValue += CardValue;
+
+			if (mHandValue + 10 <= 21)
 			{
-				CardValue += 10;
+				mHandValue += 10;
 			}
-			else
-				//Is there anything even needed here?
-		}*/
 
-
-
-		/*else if (2 <= CardValue < 10)
-		{
-			CardValue = CardValue;
-		}*/
-		/*
-		
+			//Is there anything even needed here?
+		}
 
 		else
-
-		BestHandPossible <- check if you can add 10 to hand without going over <= 21;
-		If you have an ace
-
-		*/
-		/*if (mHand[i]->GetRank() == ACE)
-		{
-			IfAceFound = true;
-		}*/
-		//tempHandValue += 1;
-	
+			mHandValue += CardValue;
 	}
 
 }

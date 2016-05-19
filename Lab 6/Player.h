@@ -10,14 +10,17 @@ public:
 	Player();	//Ctor
 	~Player();	//Dtor
 	void Bet();	//Bet money
-	void HitStay();	//Make a choice of hit/stay
+	void HitStay(Card);	//Make a choice of hit/stay
 	void Deal();	//How do I make this call Deck's deal?
-	void AddCardToPHand(Card);	//Add a card to player's hand
+	//void AddCardToPHand(Card);	//Add a card to player's hand
 	void AddMoney();	//Add money at the end of round
 	Bankroll GetBankroll() const;	//Get player's money
 	//void Check21();	//Check if blackjack
-	int GetHandValue() const;	//Get Hand's value
+	int GetPlayerHandValue(); //const;	//Get Hand's value
 	Hand GetPlayerHand() const;	//Get player's Hand?
+	void InitPlayerHand(Card, Card);	//Passes in two cards
+	void PlayerHit(Card);
+	void PlayerStay();
 
 private:
 	Bankroll mBankroll;	//Player's money

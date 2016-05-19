@@ -16,6 +16,7 @@ Deck::Deck() : mCurrentCard(0)
 	{
 		for (int rank = 0; rank < 13; rank++)
 		{
+			//mDeck[suit * 13 + rank] = new Card(static_cast<Rank>(rank + 1), static_cast<Suit>(suit + 1));
 			mDeck[suit * 13 + rank] = new Card(static_cast<Rank>(rank + 1), static_cast<Suit>(suit + 3));
 		}
 	}
