@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player()// : money(1000)
+Player::Player() : mWager(0)
 { }
 
 Player::~Player()
@@ -16,16 +16,16 @@ void Player::InitPlayerHand(Card card1, Card card2)
 
 void Player::Bet()
 {
-	int wager = 0;
+	//int wager = 0;
 
 	cout << "You currently have: $" << GetBankroll().GetMoney() << endl;
 
 	cout << "How much would you like to wager: ";
-	cin >> wager;
+	cin >> mWager;
 
 	cout << endl;
 
-	mBankroll.BetMoney(wager);
+	mBankroll.BetMoney(mWager);
 }
 
 Bankroll Player::GetBankroll() const
@@ -35,7 +35,7 @@ Bankroll Player::GetBankroll() const
 
 void Player::AddMoney()
 {
-	mBankroll.AddMoney();
+	mBankroll.AddMoney(mWager);
 	//to make this work, should i make wager a data member and make a getter?
 }
 
@@ -125,4 +125,10 @@ void Player::PlayerHit(Card mCard)
 void Player::ResetHandValue()
 {
 	mPlayerHand.SetHandValue(0);
+	//maybe pass in a 0 and then pass in an int to SetHandValue?
+}
+
+void Player::ClearHand()
+{
+	mPlayerHand.~Hand();
 }

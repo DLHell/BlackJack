@@ -19,7 +19,8 @@ void Dealer::AddCardToDHand(Card mdCard)
 
 int Dealer::GetDealerHandValue() const
 {
-	return mDealerHandValue;
+	//return mDealerHandValue;
+	return mDealerHand.GetHandValue();
 }
 
 bool Dealer::DealerPlays21(Deck & mDeck, bool mBusts)

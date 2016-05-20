@@ -22,11 +22,12 @@ public:
 	void PlayerHit(Card);
 	void PlayerStay();
 	void ResetHandValue();
+	void ClearHand();	//Clear the hand
 
 private:
 	Bankroll mBankroll;	//Player's money
 	Hand mPlayerHand;	//Player's hand
-
+	int mWager;	//Player's wager
 };
 
 

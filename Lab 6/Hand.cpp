@@ -1,13 +1,16 @@
 #include "Hand.h"
 
-Hand::Hand() : mHandValue(0), mNumOfCardsInHand(0)
+Hand::Hand() : mHand(nullptr), mHandValue(0), mNumOfCardsInHand(0)
 {
 	
 }
 
 Hand::~Hand()
 {
-
+	delete[] mHand;
+	mHand = nullptr;
+	mHandValue = 0;
+	mNumOfCardsInHand = 0;
 }
 
 int Hand::GetHandValue() const
@@ -46,8 +49,8 @@ void Hand::AddCardToHand(Card mCard)
 
 void Hand::SetHandValue(int num)
 {
-	//mHandValue = num;
-	mHandValue = 0;
+	mHandValue = num;
+	//mHandValue = 0;
 }
 
 void Hand::CountHandValue()

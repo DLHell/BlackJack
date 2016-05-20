@@ -62,6 +62,7 @@ void Blackjack::Play21()
 	bool Dealerbusts(false);
 	int PlayerHandValue(0);
 	int DealerHandValue(0);
+	bool EndDealerTurn(false);
 
 	//When second round continues, how to reset mHandValue?
 	/*mPlaya.ResetHandValue();
@@ -90,8 +91,11 @@ void Blackjack::Play21()
 	
 	cout << "\nYou now have a current hand value of: " << mPlaya.GetPlayerHandValue() << endl;
 
-	if (!Playerbusts)
+	//if (!Playerbusts)
+	if (Playerbusts == false || EndDealerTurn == false)
 	{
+		//Deal like crazy and shuffle like crazy since player hasn't busted (bug)
+		//trigger by staying on a safe round
 		cout << "\nThe dealer is now showing: " << endl;
 		mDeala.AddCardToDHand(*mDeck.Deal()); //now
 
@@ -99,32 +103,36 @@ void Blackjack::Play21()
 		Dealerbusts = mDeala.DealerPlays21(mDeck, Dealerbusts);
 
 		cout << "\nThe Dealer's hand has a value of: " << mDeala.GetDealerHandValue() << endl;
+
+
+		EndDealerTurn = true;
+		//break;
 	}
 
 	//All of this below should be if Player didn't bust right? aka include in above if statement?
 	PlayerHandValue = mPlaya.GetPlayerHandValue();
 	DealerHandValue = mDeala.GetDealerHandValue();
 
-	if (DealerHandValue < PlayerHandValue)
-	{
-		cout << "You've won the round! Enjoy your winnings." << endl;
-		mPlaya.AddMoney();	//double the wager amount here	
-		//mPlaya.AddMoney(wager);	//So do it again to 2x wager?
-		//end round. (Do you have to destory deck here?)
-	}
+	//if (DealerHandValue < PlayerHandValue)
+	//{
+	//	cout << "You've won the round! Enjoy your winnings." << endl;
+	//	mPlaya.AddMoney();	//double the wager amount here	
+	//	//mPlaya.AddMoney(wager);	//So do it again to 2x wager?
+	//	//end round. (Do you have to destory deck here?)
+	//}
 
-	else if (DealerHandValue == PlayerHandValue)
-	{
-		cout << "It's a draw!" << endl;
-		mPlaya.AddMoney();	//Give back wager
-	}
+	//else if (DealerHandValue == PlayerHandValue)
+	//{
+	//	cout << "It's a draw!" << endl;
+	//	mPlaya.AddMoney();	//Give back wager
+	//}
 
-	else if (DealerHandValue > PlayerHandValue)
-	{
-	cout << "Sorry, the dealer has won this round." << endl;
-	//take money here.	//So do nothing?
-	//end round. (Do you have to destory deck here?)
-	}
+	//else if (DealerHandValue > PlayerHandValue)
+	//{
+	//cout << "Sorry, the dealer has won this round." << endl;
+	////take money here.	//So do nothing?
+	////end round. (Do you have to destory deck here?)
+	//}
 	
 
 	/*
@@ -136,6 +144,8 @@ void Blackjack::Play21()
 	}*/
 
 	//Ask Aaron about clear hand option.
+	mPlaya.ClearHand();
+	//mDeala.ClearHand();
 }
 
 //bool Blackjack::GoAgain(bool & exit)
