@@ -16,16 +16,34 @@ void Player::InitPlayerHand(Card card1, Card card2)
 
 void Player::Bet()
 {
-	//int wager = 0;
-
 	cout << "You currently have: $" << GetBankroll().GetMoney() << endl;
 
 	cout << "How much would you like to wager: ";
 	cin >> mWager;
+	//What if you "accidentally" input decimal or non number here
 
 	cout << endl;
 
-	mBankroll.BetMoney(mWager);
+	if (mWager > GetBankroll().GetMoney())
+	{
+		cout << "Sorry, you are short of your wager." << endl;
+
+		Bet();
+	}
+	//How do I not allow them to bet more than allowed?
+	//switch statement here too? should do the same for below condition
+
+	else if (mWager <= 0)
+	{
+		cout << "Nice try but your wager can't be less than or equal to zero." << endl;
+
+		Bet();
+	}
+
+	else
+	{
+		mBankroll.BetMoney(mWager);
+	}
 }
 
 Bankroll Player::GetBankroll() const
@@ -83,7 +101,7 @@ bool Player::HitStay(Deck & mDeck, bool mBusts)	//Make a bool and make this func
 
 			mPlayerHand.CountHandValue();
 			//BustOrNah(mPlaya.GetPlayerHandValue());
-			
+		
 			break;
 		}
 
@@ -109,7 +127,7 @@ bool Player::HitStay(Deck & mDeck, bool mBusts)	//Make a bool and make this func
 
 	else if (GetPlayerHandValue() > 21)
 	{
-		cout << "You busted bruh." << endl;
+		cout << "You busted bruh.\n" << endl;
 
 		busts = true;
 	}

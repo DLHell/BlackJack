@@ -1,6 +1,6 @@
 #include "Dealer.h"
 
-Dealer::Dealer()
+Dealer::Dealer()// : mDealerHandValue(0)
 {
 
 }
@@ -26,8 +26,9 @@ int Dealer::GetDealerHandValue() const
 bool Dealer::DealerPlays21(Deck & mDeck, bool mBusts)
 {
 	bool dealerbusted(false);
+	bool hittill17(false);
 
-	while (GetDealerHandValue() < 21 && dealerbusted == false)
+	while (GetDealerHandValue() < 21 && hittill17 == false)
 	{
 		//Should handvalue be < 17 not 21? but then how to check for bust?
 		if (GetDealerHandValue() < 17)
@@ -40,6 +41,8 @@ bool Dealer::DealerPlays21(Deck & mDeck, bool mBusts)
 		else //Dealer has 17/18/19/20/21 already
 		{
 			cout << "Dealer stays with a hand of: " << GetDealerHandValue() << endl;
+			
+			hittill17 = true;
 		}
 	}
 
@@ -61,4 +64,9 @@ bool Dealer::DealerPlays21(Deck & mDeck, bool mBusts)
 void Dealer::DealerHits(Card mCard)
 {
 	mDealerHand.AddCardToHand(mCard);
+}
+
+void Dealer::DealerClearHand()
+{
+	mDealerHand.~Hand();
 }

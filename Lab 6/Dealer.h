@@ -18,7 +18,7 @@ public:
 	//Hand GetPlayerHand() const;	//Get player's Hand?
 	//void InitPlayerHand(Card, Card);	//Passes in two cards
 	void DealerHits(Card);	//void HitTill17();
-	//void PlayerStay();
+	void DealerClearHand();	//Clear the hand
 	
 
 private:

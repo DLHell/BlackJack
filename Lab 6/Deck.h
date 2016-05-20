@@ -12,7 +12,7 @@ public:
 	~Deck();	//Default Dtor
 	void Shuffle();	//Shuffle the deck
 	Card * Deal();	//Deal the deck
-	static void DisplayCount();	//Display the count of cards dealt
+	//static void DisplayCount();	//Display the count of cards dealt
 	static int DeckCount;	//Is it ok here?
 
 private:

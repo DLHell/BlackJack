@@ -95,13 +95,12 @@ void Hand::CountHandValue()
 			else if (mHandValue > 21 && Added10Already == true)
 			{
 				mHandValue -= 10;
-			}
 
-			//Is there anything even needed here?
+				Added10Already = false;
+			}
 		}
 
 		else
 			mHandValue += CardValue;
 	}
-
 }

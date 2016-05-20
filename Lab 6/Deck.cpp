@@ -91,7 +91,7 @@ Entry: Nothing.
 
 Exit: The count of dealt cards at the time of the function call.
 *****************************************************************************/
-void Deck::DisplayCount()
-{
-	cout << "This is the deck count: " << DeckCount << endl;
-}
+//void Deck::DisplayCount()
+//{
+//	cout << "This is the deck count: " << DeckCount << endl;
+//}
