@@ -54,7 +54,6 @@ Bankroll Player::GetBankroll() const
 void Player::AddMoney()
 {
 	mBankroll.AddMoney(mWager);
-	//to make this work, should i make wager a data member and make a getter?
 }
 
 Hand Player::GetPlayerHand() const
@@ -77,7 +76,6 @@ int Player::GetPlayerHandValue() const
 	return mPlayerHand.GetHandValue();
 }
 
-//maybe change to two functions
 bool Player::HitStay(Deck & mDeck, bool mBusts)	//Make a bool and make this function return a bool?
 {
 	char hitchoice = NULL;
@@ -100,16 +98,12 @@ bool Player::HitStay(Deck & mDeck, bool mBusts)	//Make a bool and make this func
 			PlayerHit(*mDeck.Deal());	//How to access deck now?
 
 			mPlayerHand.CountHandValue();
-			//BustOrNah(mPlaya.GetPlayerHandValue());
 		
 			break;
 		}
 
 		case 'N':
 		{
-			//Nothing here since player chose to stay
-			//mCard.SetDealt(false);
-			//PlayerStay();
 			hitornay = true;
 
 			break;
@@ -149,4 +143,9 @@ void Player::ResetHandValue()
 void Player::ClearHand()
 {
 	mPlayerHand.~Hand();
+}
+
+int Player::GetMoneyAtEndOfHand()
+{
+	return GetBankroll().GetMoney();
 }

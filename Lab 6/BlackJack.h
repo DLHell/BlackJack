@@ -10,8 +10,7 @@ class Blackjack
 public:
 	Blackjack();	//Ctor
 	~Blackjack();	//Dtor
-	void Play21();	//Main Driver
-	//bool GoAgain(bool &);	//Ask for another round
+	bool Play21();	//Main Driver
 	void Prompt();	//Display of GoAgain
 	void MainMenu();	//Called at the very beginning of the program
 	void Check21(int);	//Check if blackjack
@@ -25,7 +24,3 @@ private:
 };
 
 #endif
-
-/*
-this should be the main driver or the game itself
-*/

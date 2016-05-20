@@ -35,7 +35,7 @@ void Blackjack::MainMenu()
 		{
 		case 'Y':
 		{
-			Play21();
+			quit = Play21();
 
 			break;
 		}
@@ -55,7 +55,7 @@ void Blackjack::MainMenu()
 	}
 }
 
-void Blackjack::Play21()
+bool Blackjack::Play21()
 {
 	bool exit(false);
 	bool Playerbusts(false);
@@ -64,7 +64,8 @@ void Blackjack::Play21()
 	int DealerHandValue(0);
 	bool StartDealerTurn(false);
 	bool EndDealerTurn(false);
-	
+	int MoneyAtEndOfHand(0);
+
 	//Make sure you can't bet over your limit and keep playing.
 	mPlaya.Bet();
 
@@ -106,15 +107,11 @@ void Blackjack::Play21()
 		PlayerHandValue = mPlaya.GetPlayerHandValue();
 		DealerHandValue = mDeala.GetDealerHandValue();
 
-		//if (PlayerHandValue <= 21 || DealerHandValue <= 21)
-		//if (!Playerbusts || !Dealerbusts)
-		//{
 		if (Dealerbusts == true)
 		{
 			cout << "\nThe Dealer busted! Enjoy your winnings." << endl;
 			mPlaya.AddMoney();	//double the wager amount here	
 			mPlaya.AddMoney();	//So do it again to 2x wager?
-			//end round. (Do you have to destory deck here?)
 		}
 
 		else if (Playerbusts == true)
@@ -129,7 +126,6 @@ void Blackjack::Play21()
 				cout << "\nYou've won the round! Enjoy your winnings." << endl;
 				mPlaya.AddMoney();	//double the wager amount here	
 				mPlaya.AddMoney();	//So do it again to 2x wager?
-				//end round. (Do you have to destory deck here?)
 			}
 
 			else if (DealerHandValue == PlayerHandValue)
@@ -141,24 +137,24 @@ void Blackjack::Play21()
 			else if (DealerHandValue > PlayerHandValue)
 			{
 				cout << "\nSorry, the dealer has won this round." << endl;
-				//take money here.	//So do nothing?
-				//end round. (Do you have to destory deck here?)
 			}
 		}
-		//}
 	}
 
-	/*
+	MoneyAtEndOfHand = mPlaya.GetMoneyAtEndOfHand();
 	//Do you have to use GetBankRoll() below?
-	/*if (mPlaya.mBankroll == 0 || mPlaya.mBankroll >= 50000)
+	if (MoneyAtEndOfHand == 0 || MoneyAtEndOfHand >= 50000)
 	{
-	cout << "Thanks for playing but come back another day." << endl;
-	exit = true;
-	}*/
+		cout << "Thanks for playing but come back another day." << endl;
+		
+		exit = true;
+	}
 
 	//Clear both of the hands.
 	mPlaya.ClearHand();
 	mDeala.DealerClearHand();
+
+	return exit;
 }
 
 //bool Blackjack::GoAgain(bool & exit)

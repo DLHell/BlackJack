@@ -15,7 +15,6 @@ public:
 	//void AddCardToPHand(Card);	//Add a card to player's hand
 	void AddMoney();	//Add money at the end of round
 	Bankroll GetBankroll() const;	//Get player's money
-	//void Check21();	//Check if blackjack
 	int GetPlayerHandValue() const;	//Get Hand's value
 	Hand GetPlayerHand() const;	//Get player's Hand?
 	void InitPlayerHand(Card, Card);	//Passes in two cards
@@ -23,6 +22,7 @@ public:
 	void PlayerStay();
 	void ResetHandValue();
 	void ClearHand();	//Clear the hand
+	int GetMoneyAtEndOfHand();
 
 private:
 	Bankroll mBankroll;	//Player's money
