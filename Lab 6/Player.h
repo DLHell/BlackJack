@@ -21,6 +21,7 @@ public:
 	void InitPlayerHand(Card, Card);	//Passes in two cards
 	void PlayerHit(Card);
 	void PlayerStay();
+	void ResetHandValue();
 
 private:
 	Bankroll mBankroll;	//Player's money

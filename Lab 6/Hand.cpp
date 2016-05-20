@@ -46,7 +46,8 @@ void Hand::AddCardToHand(Card mCard)
 
 void Hand::SetHandValue(int num)
 {
-	mHandValue = num;
+	//mHandValue = num;
+	mHandValue = 0;
 }
 
 void Hand::CountHandValue()

@@ -9,11 +9,11 @@ using std::endl;
 class Bankroll
 {
 public:
-	Bankroll();
-	~Bankroll();
-	void BetMoney(int);
-	int GetMoney() const;
-	void AddMoney();
+	Bankroll();	//Ctor
+	~Bankroll();	//Dtor
+	void BetMoney(int);	//Bet money/subtract money
+	int GetMoney() const;	//Getter for money
+	void AddMoney(int);	//Add in money
 
 private:
 	int money;

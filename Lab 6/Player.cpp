@@ -33,6 +33,12 @@ Bankroll Player::GetBankroll() const
 	return mBankroll;
 }
 
+void Player::AddMoney()
+{
+	mBankroll.AddMoney();
+	//to make this work, should i make wager a data member and make a getter?
+}
+
 Hand Player::GetPlayerHand() const
 {
 	return mPlayerHand;
@@ -114,4 +120,9 @@ bool Player::HitStay(Deck & mDeck, bool mBusts)	//Make a bool and make this func
 void Player::PlayerHit(Card mCard)
 {
 	mPlayerHand.AddCardToHand(mCard);
+}
+
+void Player::ResetHandValue()
+{
+	mPlayerHand.SetHandValue(0);
 }

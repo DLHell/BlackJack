@@ -24,7 +24,7 @@ void Blackjack::MainMenu()
 
 	while (quit == false)
 	{
-		cout << "Would you like to play a round? (Y/N):" << endl;
+		cout << "\nWould you like to play a round? (Y/N):" << endl;
 		cin >> menuchoice;
 
 		menuchoice = toupper(menuchoice);
@@ -59,9 +59,15 @@ void Blackjack::Play21()
 {
 	bool exit(false);
 	bool Playerbusts(false);
-	//int PlayerHandValue(0);
-	//int DealerHandValue(0);
+	bool Dealerbusts(false);
+	int PlayerHandValue(0);
+	int DealerHandValue(0);
 
+	//When second round continues, how to reset mHandValue?
+	/*mPlaya.ResetHandValue();
+	mPlaya.GetPlayerHandValue();*/
+
+	//Make sure you can't bet over your limit and keep playing.
 	mPlaya.Bet();
 
 	//Every day I'm shufflin
@@ -81,7 +87,8 @@ void Blackjack::Play21()
 
 	Check21(mPlaya.GetPlayerHandValue());
 	Playerbusts = mPlaya.HitStay(mDeck, Playerbusts);
-	//cout << "current hand value: " << mPlaya.GetPlayerHandValue() << endl;
+	
+	cout << "\nYou now have a current hand value of: " << mPlaya.GetPlayerHandValue() << endl;
 
 	if (!Playerbusts)
 	{
@@ -89,43 +96,36 @@ void Blackjack::Play21()
 		mDeala.AddCardToDHand(*mDeck.Deal()); //now
 
 		Check21(mDeala.GetDealerHandValue());
+		Dealerbusts = mDeala.DealerPlays21(mDeck, Dealerbusts);
 
+		cout << "\nThe Dealer's hand has a value of: " << mDeala.GetDealerHandValue() << endl;
 	}
 
-	//*Flip* Dealer's hidden card.
-	////mDeala.AddCardToDHand(*mDeck.Deal()); later
-	//DealerHandValue = dcard1value + dcard2value;
-	//Check here to see if Dealer is below 17. If so, hit until 17.
-	//DealerHitStay();
-	//Check21();
-
-	//BustOrNah();	//Is this a Blackjack function?
-	//Check if DealerHandValue > 21;
-
-	//Can you make BustOrNah and Check21 the same function?
-
-	/*PlayerHandValue = mPlaya.GetPlayerHandValue();
+	//All of this below should be if Player didn't bust right? aka include in above if statement?
+	PlayerHandValue = mPlaya.GetPlayerHandValue();
 	DealerHandValue = mDeala.GetDealerHandValue();
 
 	if (DealerHandValue < PlayerHandValue)
 	{
-	cout << "You've won the round! Enjoy your winnings." << endl;
-	AddMoney();	//double the wager amount here
-	end round. (Do you have to destory deck here?)
+		cout << "You've won the round! Enjoy your winnings." << endl;
+		mPlaya.AddMoney();	//double the wager amount here	
+		//mPlaya.AddMoney(wager);	//So do it again to 2x wager?
+		//end round. (Do you have to destory deck here?)
 	}
 
 	else if (DealerHandValue == PlayerHandValue)
 	{
-	cout << "It's a draw!" << endl;
-	AddMoney(wager);	//Give back wager
+		cout << "It's a draw!" << endl;
+		mPlaya.AddMoney();	//Give back wager
+	}
 
 	else if (DealerHandValue > PlayerHandValue)
 	{
 	cout << "Sorry, the dealer has won this round." << endl;
-	take money here.	//So do nothing?
-	end round. (Do you have to destory deck here?)
+	//take money here.	//So do nothing?
+	//end round. (Do you have to destory deck here?)
 	}
-	*/
+	
 
 	/*
 	//Do you have to use GetBankRoll() below?
@@ -134,6 +134,8 @@ void Blackjack::Play21()
 	cout << "Thanks for playing but come back another day." << endl;
 	exit = true;
 	}*/
+
+	//Ask Aaron about clear hand option.
 }
 
 //bool Blackjack::GoAgain(bool & exit)

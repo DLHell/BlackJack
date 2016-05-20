@@ -12,6 +12,9 @@ void Bankroll::BetMoney(int wager)
 	{
 		cout << "Sorry, you are short of your wager." << endl;
 	}
+	//How do I not allow them to bet more than allowed?
+	//switch statement here too? should do the same for below condition
+
 
 	else if (wager <= 0)
 	{
@@ -22,6 +25,11 @@ void Bankroll::BetMoney(int wager)
 	{
 		money -= wager;
 	}
+}
+
+void Bankroll::AddMoney(int wager)
+{
+	money += wager;
 }
 
 int Bankroll::GetMoney() const

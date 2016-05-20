@@ -8,22 +8,18 @@ class Dealer
 public:
 	Dealer();	//Ctor
 	~Dealer();	//Dtor
-	void DealerPlays21();	//Main driver for dealer
+	bool DealerPlays21(Deck &, bool);	//Main driver for dealer
 	void AddCardToDHand(Card);
-	//void Bet();	//Bet money
 	//void HitStay(Card);	//Make a choice of hit/stay
 	//void Deal();	//How do I make this call Deck's deal?
 	////void AddCardToPHand(Card);	//Add a card to player's hand
-	//void AddMoney();	//Add money at the end of round
-	//Bankroll GetBankroll() const;	//Get player's money
 	////void Check21();	//Check if blackjack
 	int GetDealerHandValue() const;	//Get Dealer's Hand value
 	//Hand GetPlayerHand() const;	//Get player's Hand?
 	//void InitPlayerHand(Card, Card);	//Passes in two cards
-	//void PlayerHit(Card);
+	void DealerHits(Card);	//void HitTill17();
 	//void PlayerStay();
-
-	//void HitTill17();
+	
 
 private:
 	Hand mDealerHand;	//Dealer's hand
