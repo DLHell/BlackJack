@@ -2,7 +2,6 @@
 #define HAND_H
 
 #include "Deck.h"
-#include "Card.h"
 
 class Hand
 {
@@ -11,7 +10,6 @@ public:
 	~Hand();
 	int GetHandValue() const;
 	int GetNumOfCardsInHand() const;
-	//Card GetHand() const;?
 	void AddCardToHand(Card);
 	void SetHandValue(int);
 	
@@ -19,19 +17,9 @@ public:
 	void CountHandValue();
 
 private:	//data members
-	//Card * mHand[11];
 	Card * mHand;
 	int mHandValue;
 	int mNumOfCardsInHand;
 };
 
-
 #endif
-
-/*
-So hand should basically be an array that can be increased based on hit/stay choice
-array of Cards of pointer to array of cards
-starts off with 2.
-
-
-*/

@@ -11,18 +11,20 @@ public:
 	~Player();	//Dtor
 	void Bet();	//Bet money
 	bool HitStay(Deck &, bool);	//Make a choice of hit/stay
-	void Deal();	//How do I make this call Deck's deal?
-	//void AddCardToPHand(Card);	//Add a card to player's hand
+	//void Deal();	//How do I make this call Deck's deal?
+	void AddCardToPHand(Card);	//Add a card to player's hand
 	void AddMoney();	//Add money at the end of round
 	Bankroll GetBankroll() const;	//Get player's money
 	int GetPlayerHandValue() const;	//Get Hand's value
 	Hand GetPlayerHand() const;	//Get player's Hand?
 	void InitPlayerHand(Card, Card);	//Passes in two cards
-	void PlayerHit(Card);
-	void PlayerStay();
-	void ResetHandValue();
+	void PlayerHit(Card);	//Player hits
+	//void PlayerStay();	//Player stays
+	void ResetHandValue();	//Reset the hand value
 	void ClearHand();	//Clear the hand
-	int GetMoneyAtEndOfHand();
+	int GetMoneyAtEndOfHand();	//Get bankroll at the end of round
+	bool CheckDoubleDownWager();	//Can you double down?
+	void DoubleTheWager();	//Double the wager
 
 private:
 	Bankroll mBankroll;	//Player's money

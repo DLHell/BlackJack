@@ -1,8 +1,24 @@
 #include "Player.h"
 
+
+/****************************************************************************
+Purpose: Default Constructor.
+
+Entry: Nothing.
+
+Exit: A constructor that can be called without any parameters.
+*****************************************************************************/
 Player::Player() : mWager(0)
 { }
 
+
+/****************************************************************************
+Purpose: Dtor.
+
+Entry: Nothing.
+
+Exit: A constructor that can be called without any parameters.
+*****************************************************************************/
 Player::~Player()
 { }
 
@@ -20,7 +36,6 @@ void Player::Bet()
 
 	cout << "How much would you like to wager: ";
 	cin >> mWager;
-	//What if you "accidentally" input decimal or non number here
 
 	cout << endl;
 
@@ -30,8 +45,6 @@ void Player::Bet()
 
 		Bet();
 	}
-	//How do I not allow them to bet more than allowed?
-	//switch statement here too? should do the same for below condition
 
 	else if (mWager <= 0)
 	{
@@ -44,6 +57,26 @@ void Player::Bet()
 	{
 		mBankroll.BetMoney(mWager);
 	}
+}
+
+bool Player::CheckDoubleDownWager()
+{
+	bool WagerCanDouble(false);
+
+	if (mWager <= GetBankroll().GetMoney())
+	{
+		WagerCanDouble = true;
+	}
+
+	return WagerCanDouble;
+}
+
+void Player::DoubleTheWager()
+{
+	mBankroll.BetMoney(mWager);
+
+	mWager = mWager * 2;
+	//mWager += mWager;
 }
 
 Bankroll Player::GetBankroll() const
@@ -61,15 +94,12 @@ Hand Player::GetPlayerHand() const
 	return mPlayerHand;
 }
 
-//void Player::AddCardToPHand(Card mCard)
-//{
-//	//mPlayerHand.CountHandValue();
-//	//GetHandValue();
-//	
-//	mCard.Display();
-//	//How to I really add to a hand and make sure the program
-//	//knows the value of my hand?
-//}
+void Player::AddCardToPHand(Card mCard)
+{
+	mPlayerHand.AddCardToHand(mCard);
+	
+	mPlayerHand.CountHandValue();
+}
 
 int Player::GetPlayerHandValue() const
 {

@@ -18,7 +18,6 @@ public:
 private:
 	Card * mDeck[52];	//Array of 52 Card pointers
 	int mCurrentCard;	//Where you are in the deck
-	
 };
 
 #endif

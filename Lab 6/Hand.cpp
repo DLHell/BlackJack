@@ -38,7 +38,6 @@ void Hand::AddCardToHand(Card mCard)
 	{
 		delete[] mHand;
 	}
-	//for (int x = 0; )
 
 	mHand = tempCard;
 
@@ -50,7 +49,6 @@ void Hand::AddCardToHand(Card mCard)
 void Hand::SetHandValue(int num)
 {
 	mHandValue = num;
-	//mHandValue = 0;
 }
 
 void Hand::CountHandValue()

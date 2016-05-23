@@ -1,20 +1,32 @@
 #include "BlackJack.h"
-//#include "Deck.h"
-//#include "Player.h"
-//#include "Dealer.h"
 
+/****************************************************************************
+Purpose: Default Constructor.
+
+Entry: Nothing.
+
+Exit: A constructor that can be called without any parameters.
+*****************************************************************************/
 Blackjack::Blackjack() : mPlaya(), mDeala(), mDeck()
-{
-	/*Player();
-	Dealer();
-	Deck();*/
-}
+{	}
 
+/****************************************************************************
+Purpose: Dtor.
+
+Entry: Nothing.
+
+Exit: A constructor that can be called without any parameters.
+*****************************************************************************/
 Blackjack::~Blackjack()
-{
+{	}
 
-}
+/****************************************************************************
+Purpose: Main Driver.
 
+Entry: Nothing.
+
+Exit: Runs the blackjack program.
+*****************************************************************************/
 void Blackjack::MainMenu()
 {
 	char menuchoice = NULL;
@@ -65,6 +77,9 @@ bool Blackjack::Play21()
 	bool StartDealerTurn(false);
 	bool EndDealerTurn(false);
 	int MoneyAtEndOfHand(0);
+	int DoubleDownOption(0);
+	bool DoubleDownWager(false);
+	bool DoubleDownOrNah(false);
 
 	//Make sure you can't bet over your limit and keep playing.
 	mPlaya.Bet();
@@ -75,16 +90,46 @@ bool Blackjack::Play21()
 	cout << "\nYou have been dealt: " << endl;
 	mPlaya.InitPlayerHand(*mDeck.Deal(), *mDeck.Deal());
 	
-	//mPlaya.AddCardToPHand(*mDeck.Deal());	//Display card
-	//mPlaya.AddCardToPHand(*mDeck.Deal());	//Display card
-
 	cout << "\nThe Dealer is showing: " << endl;
 	mDeala.AddCardToDHand(*mDeck.Deal());
 
 	cout << "\nYou currently have: " << mPlaya.GetPlayerHandValue() << endl;
 
 	Check21(mPlaya.GetPlayerHandValue());
-	Playerbusts = mPlaya.HitStay(mDeck, Playerbusts);
+
+	DoubleDownOption = mPlaya.GetPlayerHandValue();
+
+	if (DoubleDownOption == 10 || DoubleDownOption == 11)
+	{
+		DoubleDownWager = mPlaya.CheckDoubleDownWager();
+
+		if (DoubleDownWager == true)
+		{
+			DoubleDownOrNah = CheckDoubleDown(DoubleDownOption);
+
+			if (DoubleDownOrNah == true)
+			{
+				mPlaya.DoubleTheWager();
+
+				mPlaya.AddCardToPHand(*mDeck.Deal());
+			}
+
+			else
+			{
+				Playerbusts = mPlaya.HitStay(mDeck, Playerbusts);
+			}
+		}
+
+		else
+		{
+			Playerbusts = mPlaya.HitStay(mDeck, Playerbusts);
+		}
+	}
+
+	else
+	{
+		Playerbusts = mPlaya.HitStay(mDeck, Playerbusts);
+	}
 	
 	cout << "You now have a current hand value of: " << mPlaya.GetPlayerHandValue() << endl;
 
@@ -93,7 +138,7 @@ bool Blackjack::Play21()
 	if (StartDealerTurn == false && EndDealerTurn == false)
 	{
 		cout << "\nThe dealer is now showing: " << endl;
-		mDeala.AddCardToDHand(*mDeck.Deal()); //now
+		mDeala.AddCardToDHand(*mDeck.Deal());
 
 		Check21(mDeala.GetDealerHandValue());
 		Dealerbusts = mDeala.DealerPlays21(mDeck, Dealerbusts);
@@ -102,7 +147,6 @@ bool Blackjack::Play21()
 		
 		EndDealerTurn = true;
 		StartDealerTurn = true;
-		//break;
 
 		PlayerHandValue = mPlaya.GetPlayerHandValue();
 		DealerHandValue = mDeala.GetDealerHandValue();
@@ -142,10 +186,11 @@ bool Blackjack::Play21()
 	}
 
 	MoneyAtEndOfHand = mPlaya.GetMoneyAtEndOfHand();
-	//Do you have to use GetBankRoll() below?
+
+	//If you're broke or won too much, see ya!
 	if (MoneyAtEndOfHand == 0 || MoneyAtEndOfHand >= 50000)
 	{
-		cout << "Thanks for playing but come back another day." << endl;
+		cout << "\nThanks for playing but come back another day." << endl;
 		
 		exit = true;
 	}
@@ -157,62 +202,73 @@ bool Blackjack::Play21()
 	return exit;
 }
 
-//bool Blackjack::GoAgain(bool & exit)
-//{
-//	//char choice = '\0';
-//	int choice = 0;
-//
-//	Prompt();
-//
-//	cout << "Please enter your menu choice: ";
-//	cin >> choice;
-//
-//	//choice = toupper(choice);
-//
-//	cout << endl;
-//
-//	switch (choice)
-//	{
-//		case 1:
-//		{
-//			exit = false;
-//
-//			break;
-//		}
-//
-//		case 2:
-//		{
-//			exit = true;
-//
-//			break;
-//		}
-//
-//		default:
-//			cout << "Sorry, that was not a valid menu option, please try again.\n" << endl;
-//	}
-//
-//	return exit;
-//}
+/****************************************************************************
+Purpose: Check if you hit blackjack or nah.
 
-void Blackjack::Prompt()
-{
-	cout << "\nWould you like to play another hand: " << endl;
-	cout << "\n1) Yes." << endl;
-	cout << "2) No.\n" << endl;
-}
+Entry: Int value that represents the hand value.
 
+Exit: Check if player/dealer hit blackjack.
+*****************************************************************************/
 void Blackjack::Check21(int handvalue)
 {
+	//WINNER WINNER CHICKEN DINNER
 	if (handvalue == 21)
 	{
 		cout << "You hit BlackJack! Stay your hand." << endl;
 	}
 }
 
+/****************************************************************************
+Purpose: Check if you busted or nah.
+
+Entry: Int value that reprsents the hand value.
+
+Exit: Check if player/dealer busted.
+*****************************************************************************/
 void Blackjack::BustOrNah(int bustmate)
 {
 	if (bustmate > 21)
 	{
 		cout << "Sorry mate, you just busted." << endl;
 	}
+}
+
+/****************************************************************************
+Purpose: Check if you want to double down.
+
+Entry: Int value that represents the hand value.
+
+Exit: Return a bool that represents the user's choice to double down or not.
+*****************************************************************************/
+bool Blackjack::CheckDoubleDown(int handvalue)
+{
+	char doubledownchoice = NULL;
+	bool doubledownornah(false);
+
+	cout << "Would you like to double down? (Y/N):" << endl;
+	cin >> doubledownchoice;
+
+	doubledownchoice = toupper(doubledownchoice);
+
+	cout << endl;
+
+	switch (doubledownchoice)
+	{
+		case 'Y':
+		{
+			doubledownornah = true;
+
+			break;
+		}
+
+		case 'N':
+		{
+			break;
+		}
+
+		default:
+			cout << "Sorry, that was not a valid menu option, please try again.\n" << endl;
+	}
+
+	return doubledownornah;
 }

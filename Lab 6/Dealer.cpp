@@ -1,6 +1,6 @@
 #include "Dealer.h"
 
-Dealer::Dealer()// : mDealerHandValue(0)
+Dealer::Dealer()
 {
 
 }
@@ -19,7 +19,6 @@ void Dealer::AddCardToDHand(Card mdCard)
 
 int Dealer::GetDealerHandValue() const
 {
-	//return mDealerHandValue;
 	return mDealerHand.GetHandValue();
 }
 
