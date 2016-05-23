@@ -15,17 +15,17 @@ Purpose: Dtor.
 
 Entry: Nothing.
 
-Exit: A constructor that can be called without any parameters.
+Exit: Invoked when an object is destoryed to free up allocated space.
 *****************************************************************************/
 Blackjack::~Blackjack()
 {	}
 
 /****************************************************************************
-Purpose: Main Driver.
+Purpose: Main Menu.
 
 Entry: Nothing.
 
-Exit: Runs the blackjack program.
+Exit: Asks user if they want to play a round of blackjack.
 *****************************************************************************/
 void Blackjack::MainMenu()
 {
@@ -67,6 +67,13 @@ void Blackjack::MainMenu()
 	}
 }
 
+/****************************************************************************
+Purpose: Main Driver.
+
+Entry: Nothing.
+
+Exit: Runs the blackjack program.
+*****************************************************************************/
 bool Blackjack::Play21()
 {
 	bool exit(false);

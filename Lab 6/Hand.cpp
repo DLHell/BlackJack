@@ -1,10 +1,22 @@
 #include "Hand.h"
 
-Hand::Hand() : mHand(nullptr), mHandValue(0), mNumOfCardsInHand(0)
-{
-	
-}
+/****************************************************************************
+Purpose: Default Constructor.
 
+Entry: Nothing.
+
+Exit: A constructor that can be called without any parameters.
+*****************************************************************************/
+Hand::Hand() : mHand(nullptr), mHandValue(0), mNumOfCardsInHand(0)
+{	}
+
+/****************************************************************************
+Purpose: Dtor.
+
+Entry: Nothing.
+
+Exit: Invoked when an object is destoryed to free up allocated space.
+*****************************************************************************/
 Hand::~Hand()
 {
 	delete[] mHand;
@@ -13,16 +25,38 @@ Hand::~Hand()
 	mNumOfCardsInHand = 0;
 }
 
+/****************************************************************************
+Purpose: Getter for Hand Value.
+
+Entry: Nothing.
+
+Exit: return mHandValue.
+*****************************************************************************/
 int Hand::GetHandValue() const
 {
 	return mHandValue;
 }
 
+/****************************************************************************
+Purpose: Getter for number of cards in the hand.
+
+Entry: Nothing.
+
+Exit: return mNumOfCardsInHand.
+*****************************************************************************/
 int Hand::GetNumOfCardsInHand() const
 {
 	return mNumOfCardsInHand;
 }
 
+/****************************************************************************
+Purpose: Allocate space for a Card.
+
+Entry: A Card.
+
+Exit: Space is allocated for a new Card and it is displayed. Also increments
+mNumOfCardsInHand.
+*****************************************************************************/
 void Hand::AddCardToHand(Card mCard)
 {
 	Card * tempCard = new Card[mNumOfCardsInHand + 1];
@@ -46,11 +80,25 @@ void Hand::AddCardToHand(Card mCard)
 	mNumOfCardsInHand++;
 }
 
+/****************************************************************************
+Purpose: Setter for Hand Value.
+
+Entry: Int value that Hand Value is to be set to.
+
+Exit: mHandValue = the passed in integer.
+*****************************************************************************/
 void Hand::SetHandValue(int num)
 {
 	mHandValue = num;
 }
 
+/****************************************************************************
+Purpose: Count the value of the hand.
+
+Entry: Nothing.
+
+Exit: Calculates the value of the hand depending on the cards in the hand.
+*****************************************************************************/
 void Hand::CountHandValue()
 {
 	bool IfAceFound(false);

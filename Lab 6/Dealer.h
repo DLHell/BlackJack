@@ -11,7 +11,6 @@ public:
 	bool DealerPlays21(Deck &, bool);	//Main driver for dealer
 	void AddCardToDHand(Card);
 	int GetDealerHandValue() const;	//Get Dealer's Hand value
-	//Hand GetDealerHand() const;	//Get dealer's Hand?
 	void DealerHits(Card);	//Dealer hits till 17
 	void DealerClearHand();	//Clear the hand	
 

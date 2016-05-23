@@ -83,15 +83,3 @@ Card * Deck::Deal()
 	//return mCurrentCard > 51 ? *mDeck[51] : *mDeck[mCurrentCard++];
 	return mDeck[mCurrentCard++];
 }
-
-/****************************************************************************
-Purpose: Display the number of cards already dealt.
-
-Entry: Nothing.
-
-Exit: The count of dealt cards at the time of the function call.
-*****************************************************************************/
-//void Deck::DisplayCount()
-//{
-//	cout << "This is the deck count: " << DeckCount << endl;
-//}
